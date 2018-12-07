@@ -17,12 +17,16 @@ Thread model: posix
 InstalledDir: /Library/Developer/CommandLineTools/usr/bin
 ```
 
-2. If yours does too, then try navigating to the `src` directory and execute:
+If yours does too, then navigate to the `src` directory in the repository and choose an example to compile.
+
+2.  To compile a C++ example written using cppzmq, execute the following in the `src` directory:
 
 `$ g++ -std=c++17 example.cpp -o example -lzmq`
 
-This should create the binary of the "examepl.cpp" file, which can be executed with:
+This should create the binary of the "example.cpp" file.
 
-3. `$ ./example`
+3. To execute the binary, simply run `$ ./example`
 
-Hope this helps...
+
+## Conclusions
+Hope the above was helpful. Now, lets go back to coding! 
