@@ -30,6 +30,11 @@ This should create the binary of the "example.cpp" file.
 
 3. To execute the binary, simply run `$ ./example`
 
+## Note on parallel patterns 
+Some of the examples are built based on parallel design patterns. For example, the ventilator examples (with files taskvent.cpp, taskwork.cpp and tasksink.cpp) is an implementation of a fair load balancing algorithm. The taskworkers PULL from the taskventilator, and PUSH to the tasksink. This means it is possible to run the algorithm with multiple taskworkers. Do to this, consider the following execution command to run 50 taskworkers in parallel:
+
+`$ for((i = 1; i <= 50; i++)) do ./taskwork & done`
+
 
 ## Conclusions
 Hope the above was helpful. Now, lets go back to coding!
