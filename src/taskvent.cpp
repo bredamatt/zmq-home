@@ -22,7 +22,17 @@ int main (int argc, char *argv[])
   // Need to bind the sink
   socket_t sink(context, ZMQ_PUSH);
   sink.connect("tcp://localhost:5558");
+
+  // Create message object and add first message content as "0"
   message_t message(2);
+  /*/
+      Remember memcpy:
+      void *memcpy (void *destination, const void *source, size_t num)
+
+      Can be used to copy the values of "num" bytes from the location pointed
+      to by "source", to the memory block pointed to by "destination"
+  /*/
+
   memcpy(message.data(), "0", 1);
   sink.send(message);
 
