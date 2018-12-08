@@ -48,6 +48,7 @@ int main (int argc, char *argv[])
     workload = within(100) + 1;
     total_msec += workload;
 
+    // Each message must be rebuilt for each task
     message.rebuild(10);
     memset(message.data(), '\0', 10);
     sprintf((char *) message.data(), "%d", workload);
