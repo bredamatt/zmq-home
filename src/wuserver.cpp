@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <iostream>
 
 #if(defined (WIN32))
 #include <zhelpers.hpp>
@@ -16,6 +17,7 @@ int main(){
   zmq::socket_t publisher(context, ZMQ_PUB);
   publisher.bind("tcp://*:5556");
   publisher.bind("ipc://weather.ipc");
+  std::cout << "Weather update server is running..." << std::endl;
 
   // Random number generator
   srandom((unsigned) time(NULL));
