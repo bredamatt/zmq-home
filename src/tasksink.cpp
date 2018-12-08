@@ -38,6 +38,7 @@ int main (int argc, char *argv[])
     }
   }
 
+  // Record time again
   struct timeval tend, tdiff;
   gettimeofday(&tend, NULL);
 
@@ -50,7 +51,7 @@ int main (int argc, char *argv[])
     tdiff.tv_usec = tend.tv_usec - tstart.tv_usec;
   }
 
-  total_msec = tdiff.tv_sec * 100 + tdiff.tv_usec / 1000;
+  total_msec = tdiff.tv_sec * 1000 + tdiff.tv_usec / 1000;
   cout  << "\nTotal elapsed time: " << total_msec << " msec\n" << endl;
 
   return 0;
