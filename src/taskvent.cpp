@@ -11,7 +11,7 @@ int main (int argc, char *argv[])
 {
   context_t context(1);
 
-  // Send messages from this socket:
+  // Send messages to workers from this socket:
   socket_t sender(context, ZMQ_PUSH);
   sender.bind("tcp://*:5557");
 
