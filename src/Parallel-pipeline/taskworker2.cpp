@@ -23,4 +23,30 @@ int main (int argc, char *argv[])
   controller.connect("tcp://localhost:5559");
   controller.setsockopt(ZMQ_SUBSCRIBE, "", 0);
 
+  // Process messages from receiver and controller
+  zmq::pollitem_t items [] = {
+    { receiver, 0, ZMQ_POLLIN, 0 },
+    { controller, 0, ZMQ_POLLIN, 0 }
+  };
+
+  // Process messages from both sockets using multiplex I/O
+  while(1) {
+    zmq::message_t message;
+    zmq::poll (&items [0], 2, -1);
+
+    if (items [0].revents & ZMQ_POLLIN) {
+      receiver.recv(&message);
+
+      // The receiver processes a task
+      int workload;
+
+      // Create string of length of message
+      std::string sdata(static_cast<char*>(message.data()), message.size());
+      
+      // Define a istringstream to process the message
+      std::istringstream iss(sdata);
+      iss >> workload;
+    }
+  }
+
 }
