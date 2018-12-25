@@ -14,5 +14,7 @@ int main (int argc, char *argv[])
   zmq::socket_t receiver(context, ZMQ_PULL);
   receiver.connect("tcp://localhost:5557");
 
-  // Create the send socket. or push req 
+  // Create the send socket. or push req
+  zmq::socket_t sender(context, ZMQ_PUSH);
+  sender.connect("tcp://localhost:5558");
 }
