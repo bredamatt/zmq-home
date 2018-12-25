@@ -37,16 +37,34 @@ int main (int argc, char *argv[])
     if (items [0].revents & ZMQ_POLLIN) {
       receiver.recv(&message);
 
-      // The receiver processes a task
+      // The receiver processes soem work
       int workload;
 
-      // Create string of length of message
+      // Create string defined as length of message
       std::string sdata(static_cast<char*>(message.data()), message.size());
-      
+
       // Define a istringstream to process the message
       std::istringstream iss(sdata);
       iss >> workload;
+
+      // Then do the work
+      s_sleep(workload);
+
+      // Rebuild and send the results to the sink
+      message.rebuild();
+      sender.send(message);
+
+      // Progress indicator
+      std::cout << "." << std::flush;
+    }
+
+    // Any waiting controller command acts like 'KILL'
+    if (items [1].revents & ZMQ_POLLIN) {
+      std::cout << std::endl;
+      break;
     }
   }
+
+  return 0;
 
 }
