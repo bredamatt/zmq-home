@@ -10,11 +10,17 @@ int main (int argc, char *argv[])
   // Create the context
   zmq::context_t context(1);
 
-  // Create the receive socket, or pull req
+  // Create and bind the receive socket, or pull req
   zmq::socket_t receiver(context, ZMQ_PULL);
   receiver.connect("tcp://localhost:5557");
 
-  // Create the send socket. or push req
+  // Create and bind the send socket. or push req
   zmq::socket_t sender(context, ZMQ_PUSH);
   sender.connect("tcp://localhost:5558");
+
+  // Create socket for control input
+  zmq::socket_t controller (context, ZMQ_SUB);
+  controller.connect("tcp://localhost:5559");
+  controller.setsockopt(ZMQ_SUBSCRIBE, "", 0);
+
 }
