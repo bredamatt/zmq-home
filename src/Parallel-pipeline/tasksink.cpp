@@ -42,7 +42,7 @@ int main (int argc, char *argv[])
   struct timeval tend, tdiff;
   gettimeofday(&tend, NULL);
 
-  // Checking if first time reg. is greater, or less than the second 
+  // Checking if first time reg. is greater, or less than the second
   if (tend.tv_usec < tstart.tv_usec) {
     tdiff.tv_sec = tend.tv_sec - tstart.tv_sec - 1;
     tdiff.tv_usec = 1000000 + tend.tv_usec - tstart.tv_usec;

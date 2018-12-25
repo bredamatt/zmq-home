@@ -22,6 +22,8 @@ int main (int argc, char *argv[])
     socket_t sender(context, ZMQ_PUSH); // define send with ZMQ_PUSH
     sender.connect("tcp://localhost:5558");
 
+    cout << "Worker up" << endl;
+
     // Should always process tasks
     while (1) {
 
@@ -44,6 +46,6 @@ int main (int argc, char *argv[])
 
       cout << "." << flush;
     }
-    return 0;
 
+    return 0;
 }
